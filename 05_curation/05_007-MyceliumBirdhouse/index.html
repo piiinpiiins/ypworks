@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_007 | Curation</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/png" href="../../Yipin photo.png">
+</head>
+
+<body>
+    <a href="../../index.html" class="back-link">← 回首頁</a>
+
+    <h1>真菌巢箱 - 有生命的材料與機器系列 vol.5</h1>
+    <p class="cat-label">Curation</p>
+    <hr>
+
+    <div class="stack-sm">
+        <img src="images/cover.png" alt="05_007" class="detail-media">
+
+        <div id="slideshow">
+            <div id="slide-container">
+                <img id="slide-img" src="" alt="slideshow">
+                <button id="prev" onclick="changeSlide(-1)">&#8592;</button>
+                <button id="next" onclick="changeSlide(1)">&#8594;</button>
+                <div id="slide-counter"></div>
+            </div>
+            <a href="https://photos.app.goo.gl/JvmxPhNRKB2RHTMX9" target="_blank" id="album-link">在 Google Photos 中查看相簿
+                →</a>
+        </div>
+
+        <style>
+            #slideshow {
+                margin: 1.5rem 0;
+            }
+
+            #slide-container {
+                position: relative;
+                width: 100%;
+            }
+
+            #slide-img {
+                width: 100%;
+                max-height: 600px;
+                object-fit: contain;
+                background: #111;
+                display: block;
+            }
+
+            #prev,
+            #next {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(0, 0, 0, 0.5);
+                color: #fff;
+                border: none;
+                font-size: 1.5rem;
+                padding: 0.5rem 0.8rem;
+                cursor: pointer;
+                z-index: 10;
+            }
+
+            #prev {
+                left: 0.5rem;
+            }
+
+            #next {
+                right: 0.5rem;
+            }
+
+            #prev:hover,
+            #next:hover {
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            #slide-counter {
+                position: absolute;
+                bottom: 0.5rem;
+                right: 0.8rem;
+                color: #fff;
+                font-size: 0.85rem;
+                background: rgba(0, 0, 0, 0.4);
+                padding: 2px 6px;
+                border-radius: 3px;
+            }
+
+            #album-link {
+                display: inline-block;
+                margin-top: 0.5rem;
+                font-size: 0.9rem;
+            }
+        </style>
+        <script>
+            const photos = [
+                "https://lh3.googleusercontent.com/pw/AP1GczMcpWYHBDSJExt7ls6cmZvV4We-VPaggEGJzf-oRgisOSa2IHjL9d2Exi67499tjKQvysR2ceqdduxSQexHj23XNA-wjjPYo3vXWhp2q_azkTnXXiag=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczNeCeLRyjCH0NLlqnu_XKJyMYGvrOjTujR13UNWHMzqT-ZAQImgo0Qo6wyV2UWXRkU39nLnDXzD1JXtPebjbwTK9Aq2AfKv34XtLAUl1DYhKmkUHMFy=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczM9IJpD0JDsD-6-EQFMgVT9WgivoamDm3sz0J6vmoxZ6iobOP2kmOEkRCg62RDRExLJsYSEi-xsygo-VkvOexTmnYMaVEApMnmrb6XaCnAgLJd90egr=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczMZH91-gMsz87H6ACfeVSxDj0i_OgLNIPx0esjf34fkqAmyI-9Rayxrra2v2w9uAH_Gnr6JhMlrX15vfCD-7CCJDFbVWLoXhHNWJOusCaE7xF0Y_I7F=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczP70gckfyOs9l9wc0gmzW99GOkjLqivOoBE4XxCOPb0TWCMq4HMIh2KcMja-GAuhN22jg7vh8ztv7ocXVAksrTGjwIWP-KSPvBd4mmNTs60C0z1rB6S=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczN-ld2g-KbfzO1nTQzFDhR6fQkcwV8eY66jxGtfX3wceaPADnRm0lxpdbu79QPqYbEFVD1vALrTpw3LGAcl8N4M17VbPdDMicSz3aicONxXwn7KHFx1=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczNnd234Ni0O6BT1ZvsmbBObuBSnXhsC4qf01LJ9JV_yJq6fGkeRxQgVuTVnCFjD7hvvR_dOAHWwcvz_VdAa_B4FXM1yeiJlDXWDFaGAmAQATUeAjw6t=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczMGqfTXgQQ1SZDSleEeMMjJhOfJFn5Ni4qJPRbAB4_ZtuhJ0IDH_n-puWmzU_B6YyONzrBuAi7KMVdUsomuK1KHTZzGghJNFBx3EkUQUzX1fYHf8RXB=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczPYTYWRQCqAb6jG--6pKlG_zjk009Qa2uhsKKofUucoq92QfTd47Ja29yywSBjTBHgjgG2a08_tssLC-HIW2O_EtEcLW9-K3Cegl8wLqlFJ2_7FRyA1=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczPDnV5bnjLavuAQeo9yCNVf_fQ7SDFVljsfUrj-uhOqK2I9CgYDp1xwaxTVh81FFSh3RIhO20YoOJqcfkfpCbq9KgPp7BcpdMXpZljL9R-lJJQdAPDy=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczNm0m-orv88tHn_XMnh1_uW-neInOUM8mH7fC3egpflsoOvtdWF7WtfX1iOLXW9OUW4fxbOYidEjZL__Si7R8iBD_aRY4z7chv7-DX-RCkZU1NE5PxL=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczOBED0bpyKQdhpC39bEDLkANcOnEZ63reT_68bfgJOBleUsQQ1shstLS0yrTvaTwrqXcMUFsvIPBO9h63j_ppSx6t_XERnTRB85hYzX_5xV0tkI9F6s=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczN3dvY80mJ_7DSNPELab7Kxb_vGKL8F7x0h-0pG?key=aE5hY3ZsTmlsSTJMUUJ3dFJwUHhTSHhqbW41MDdn",
+                "https://lh3.googleusercontent.com/pw/AP1GczNSC_r1TBf6sC-qEAz-nr4QDD39uJzvGUIJJxmsYvHGzbUFm67cMUW4NFuzXb3RcHZhDJs8nHsZ_cS-Uc7z-2x9UqNJrm65GqKl6xw-0n33ACRNDLnp=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczNBhzRxF8jLlM8Cs5F9Eoj7j1Jpdc8XZDZ3r1_n4NyKoUsmTo_2H33hjRlrWVr7wcxTeYl604ZWNHIMcnrZ_wVdEFYBNYkaevTeR7ZkFIzL9gLPh4X5=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczM655ueee-3IBRVT6b6_EXGk9eFCS2xxoCH1yEr?key=aE5hY3ZsTmlsSTJMUUJ3dFJwUHhTSHhqbW41MDdn",
+                "https://lh3.googleusercontent.com/pw/AP1GczM2Eh6E1TXds7Jqdwrn4QAotHXGef_vObZ8eRII-Dkkab7eIdEXHiXHHnZJrqvM8DYkcj0nWWOksOBMZ5WNV6f12QTcFrBpkwtb0D293cZbr1tmsFrC=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczOecXTwvrN2KFDf7bQ2zT-RMDoD8eCw9XbhpV5uIXd4PKXfGKowaiiyOi9ObCbg0mfP8ggjs03gpJgm3p1_ygMrjZrKdxR5M05sSmHuBtFG9wmb_P8A=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczO5erh7y0o0MCjxtkq4nfTVrSsZBHTm65YaiKVJfyZPjj2wqMb5s7uniq6uUOZ6lHdiXoN94BMNpSj3HhlycwFgwS4D0bA6v2ZKQxcI6Dg02bskgb_U=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczO0OlF-SypDbPnw8Iz_VtnfF22334OmZooXj6lB3Qi3NlIf8vz8uAhYv1jyLk9biupNnjsI1uouFBv-cg43xLpQ0m7gaugBi3ADqlISVwOqvHjfsRw1=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczOWXPGCb-xaKm_mA0uAq3BwLHafKc8hwY3C-8pzGSzeSY23x2ZXh-q0UQQidn-QMPWPE0NbPsQDMCUpjLA6QTNl7cv_NbHVv1-AMHTH6kuxvWD5gTMu=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczOzFpp--C2MroMWaL2dgY8171MNAUHFJ2HS7zUzqo9_S0jpkfpgmiDjHpjImfD8eA-_Ud8dSyND9cQlQHYtU1dZkBwO1lTaE_xzcdBLd3jRRVQTPTmc=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczOIeWHi-Et1owXKW94MVhelGQje4Gpm3NOThUXOnBFz5Y4eneZ6HSOecI2AnaFfHnB3MD6__dApw2ntH69dQv29jznYudy_VlaNBpNOGzmoDp2mH_Tz=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczMNEV_LW83Fw87XzTGGEQWWHbAQCz60WhQYGWQKWP9IkxlkrBr2fIqogLXbxLMidxOSnPd-4VxNUWHa7Nh3smdAudg8zrABw9UTVLkhkxH1mVYr3drM=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczNJMK6TXj8RJ7_w9_TeJXlDlg57_p3gFlQOJcLfol_xzfP7zfUH2kbb_g5-tDMFqSR94n72kBv0bmN0tJRBxxzJgvy3aZB4ONlOGg4He8Kz_M3K0Hxe=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczP-l3zZ9BVTVwh8cVbDujyPlWSqFfcEDMhm2UWbyRT882CUCxYG2txetu07Xh8TZL1Lv4Snip04HVqhMTMe_VXNM_q9cGJtLsSEtjsElDtpU2Z2CWio=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczO0b-mPhTxVlxfukQnZuO9HOogu1s9wz3BMOT6EGg_fckkopmcJhLWMJDiOszqxI6UDri6cx-V_qCSgc7ZlMCEZwwpU9G8VRI2DcMUTU9EfZlDlknCo=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczNYIVTVY5amEWuP6pJ7QgMLzqYnbQ6ORXon5UhYi6j-xwy-nBxPjVGng1N9GqtqU8EKGdletpAq7IY8xMjw_35mDwmcNaN-GlYqdvb9EYHVc36cF6i0=w1200",
+                "https://lh3.googleusercontent.com/pw/AP1GczPiA1XryZSE-AiqiJ9F-z-UH9kKPI-FkFWD0Gw5?key=aE5hY3ZsTmlsSTJMUUJ3dFJwUHhTSHhqbW41MDdn",
+                "https://lh3.googleusercontent.com/pw/AP1GczOsABzUEy-d4tFOsqe2uPbGK2hoxJb-xENTOJg9?key=aE5hY3ZsTmlsSTJMUUJ3dFJwUHhTSHhqbW41MDdn"
+            ];
+            let current = 0;
+            const img = document.getElementById('slide-img');
+            const counter = document.getElementById('slide-counter');
+            function show(n) {
+                current = (n + photos.length) % photos.length;
+                img.src = photos[current];
+                counter.textContent = (current + 1) + ' / ' + photos.length;
+            }
+            function changeSlide(dir) {
+                show(current + dir);
+                resetTimer();
+            }
+            function resetTimer() {
+                clearInterval(timer);
+                timer = setInterval(() => show(current + 1), 1500);
+            }
+            show(0);
+            let timer = setInterval(() => show(current + 1), 1500);
+        </script>
+
+        <div id="desc">
+            <h2>真菌巢箱 - 有生命的材料與機器系列 vol.5</h2>
+            <h3>Mycelium Birdhouse - Living Materials and Machines Series vol.5</h3>
+
+            <p>本學期在 VISION BASE
+                真菌工作坊的題目是「真菌巢箱」。我們將以台灣樹洞型鳥類居住的形態為基礎，使真菌材料能透過人造塑形，培養成鳥類可居住大小的真菌箱體。在課程中我們會加入新版本的真菌磚混合其它基質的技巧、高壓滅菌、自製真菌包的方法。
+            </p>
+
+            <h4>課程內容大綱如下：</h4>
+            <ul>
+                <li>week 1 : 介紹 1) 台北常見的侯鳥 2) 真菌樣本介紹</li>
+                <li>week2：實作真菌樣本</li>
+                <li>week3：模具探討 - 使用本課程己開發的模具實驗造形</li>
+                <li>week4：講座</li>
+                <li>week5：成果 demo</li>
+            </ul>
+
+            <p>歡迎之前參加過有生命的材料與機器 & bio design in context 的同學再次加入。</p>
+
+            <h4>工作坊資訊：</h4>
+            <ul>
+                <li>日期：2025/11/4-12/2 每週二晚上 18:30-21:30</li>
+                <li>人數：12人</li>
+                <li>地點：A棟 B1 VISION BASE</li>
+                <li>招募對象：實踐大學設計學院研究生 12 名</li>
+                <li>報名截止時間：2025/10/28 23:59</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+Bio Design Kit 是一個將目前我研究的真菌複合材打包成禮物包的形式，讓設計師可以透過這個小包材料，在家中製作自己的真菌複合材。我在裡面放了一本小冊子，介紹真菌複合材的特性、製作方法、以及應用方式。我將這個 kit 帶到 2025 年的設計展中送給來自國外的演講者，希望有更多創作者感受到真菌複合材的魅力。
+
+Bio Design Kit is a gift package containing mycelium composite materials from my current research, designed to let designers make their own mycelium composites at home. Inside, I included a small booklet introducing the properties, making process, and applications of mycelium composites. I brought this kit to the 2025 design exhibition as gifts for international speakers, hoping to share the charm of mycelium composites with more creators.

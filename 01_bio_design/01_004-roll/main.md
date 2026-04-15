@@ -1,0 +1,9 @@
+# Planar Forming
+
+真菌作為可分解材料的研究已行之有年，但針對真菌材料在短暫可塑期內的塑形操作方法，仍缺乏系統性的整理與討論。本研究借用陶土可塑性的對照，探討將菌絲複合材料作為互動媒材時，設計控制與生物自主性之間的協商。我們以木屑、米糠、糙米、麵粉、少量茶梗、水與鹿角靈芝菌種混合而成的真菌塊為例，將其塑形流程與陶製器物的成形流程進行對照，整理兩者在材料取得、成形控制、乾燥與加熱等階段的相似與差異，進而說明活體材料在成品生成過程中的限制與可能性。本文提出六種可重複的塑形方法：綁繩法、平面法、3D 列印模具填充法、綁繩結合模具法、縫合法、挖空法，並整理菌絲複合材料的基礎操作建議，協助設計師更有效地展開後續實作。
+
+Fungi-based materials have been studied for many years as biodegradable materials. However, there is still a lack of systematic discussion about how to shape mycelium materials during their short workable period. This study uses clay as a comparison to examine how designers negotiate design control and biological agency when using mycelium composites as an interactive material. We use mycelium blocks made from wood shavings, rice bran, brown rice, flour, a small amount of tea stems, water, and antler-form Ganoderma lucidum. We compare the shaping process of mycelium blocks with the forming process of ceramic objects. We summarize similarities and differences across stages such as material preparation, forming control, drying, and heating. Through this comparison, we explain the limits and possibilities of living materials during artifact making. We propose six repeatable shaping methods: rope binding, planar forming, 3D-printed mold filling, rope–mold hybrid forming, stitching-based assembly, and hollowing. We also provide basic operational guidelines to help designers carry out further making more effectively.
+
+#### Keyword
+
+Living Materials, Biological Agency, Material Practices, Human–Material Interaction, Fabrication in Design Research
