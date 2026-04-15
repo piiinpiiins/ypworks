@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing Automaton | Interaction Design</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .pre {
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .pre {
+        background-color: #1a1a1a;
+        border-color: #333;
+        color: #f5f5f7;
+      }
+    }
+  </style>
+    <link rel="icon" type="image/png" href="../../Yipin photo.png">
+</head>
+
+<body>
+  <a href="../../index.html" class="back-link">← 回首頁</a>
+
+  <h1>Writing Automaton</h1>
+  <p class="cat-label">Interaction Design</p>
+  <hr>
+
+  <div class="stack-sm">
+    <img src="images/cover.png" alt="Writing Automaton" class="detail-media">
+    <div id="desc">
+      <p><strong>Original Fab Academy page:</strong> <a
+          href="https://fabacademy.org/2015/as/students/huang.yi-pin/finalProject.html"
+          target="_blank">https://fabacademy.org/2015/as/students/huang.yi-pin/finalProject.html</a></p>
+
+      <h2>18 - Final Project</h2>
+
+      <p>My final project is Writing Automaton. I like this project very much because I can integrate lots of skill I
+        learn in Fab Academy.</p>
+
+
+      <h3>Demonstration</h3>
+      <p><iframe width="800" height="450" src="https://www.youtube.com/embed/kR-KHLh8xPA" frameborder="0"
+          allowfullscreen style="max-width: 100%;"></iframe></p>
+
+      <h3>Arm Design</h3>
+      <p>Arm design is the most important part. I study arm structure by using paper prototype. Hand made prototype
+        helps me understand where to put servo and how they move.</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_3518.JPG" class="detail-media"
+        alt="Arm Design">
+
+      <h3>Automaton Body</h3>
+      <p>The design goal of body should have enough space for at least 2 curcuit boards and 2 servo motors. I create a
+        3D model to study the shape, space and mechanical structure.</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/001_robotBody.jpg" class="detail-media"
+        alt="Automaton Body">
+
+      <p>A plugin <a href="http://www.pumpkinpirate.info/flattery/" target="_blank">Flattery</a> in sketchup is a nice
+        tool to help unfold a 3D model to paper craft. Paper craft layout can be saved as SVG, but I should add some
+        screw holes and latches manually in illustrator. The first prototype is shown below:</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_3539_02.JPG" class="detail-media"
+        alt="First Prototype">
+
+      <p>There is not enough space for servo motor to LIFT the arm. And the bending curve of MDF can be easily break
+        when I assembled parts.</p>
+
+      <p>I did some experiments on laser curve bent wood with MDF. Hinge gaps are too big in the first generation, so
+        that it sometimes slplited when I bent. The 2nd generation is the worst. The 3rd one is not bad.</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4258_02.jpg" class="detail-media"
+        alt="Laser Experiments">
+
+      <p>Assembling:</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4114_02.jpg" class="detail-media"
+        alt="Assembling">
+
+      <p><a
+          href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/FabAcademy2015_WritingAutomaton_yi-pinHuang.ai"
+          target="_blank"><img
+            src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/FabAcademy2015_WritingAutomaton_yi-pinHuang.jpg"
+            class="detail-media" alt="Laser Cut Design"></a></p>
+
+      <p>Shoulder joint is recommended using a <a
+          href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/3d_models/shoulder.skp" target="_blank">3D
+          printed part</a>. Because 3D part has some tolerance.</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4155_02.jpg" class="detail-media"
+        alt="Shoulder Joint">
+
+      <h3>Hand</h3>
+      <p>I think that will be great to create a <a
+          href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/3d_models/hand.skp"
+          target="_blank">hand</a>.</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/002_hand.jpg" class="detail-media"
+        alt="Hand 3D Model">
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4247_01.jpg" class="detail-media"
+        alt="3D Printed Hand">
+
+      <p>Hand is cool, but 3d printed parts are to heavy. It causes arm unable to lift up.</p>
+
+      <h3>Input devices</h3>
+      <p>I hacked a mouse to get an optical sensor, and redesign it to become a optical sensor pen.</p>
+
+      <p>There was a small lens inside optical mouse. I used wire saw to cut the size I want. In order to make it work,
+        the relationship among red LED, optical sensor and lens can not be changed.</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_3974_02.jpg" class="detail-media"
+        alt="Optical Sensor">
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_3975_02.jpg" class="detail-media"
+        alt="Sensor Parts">
+
+      <p>If it is possible, measure the parts with a calipers.</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4221_02.jpg" class="detail-media"
+        alt="Measuring">
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/003_pen.jpg" class="detail-media"
+        alt="Pen Design">
+
+      <p>Mechnical test. I tried to add a switch in my input device. The original idea is like when I push this pen
+        (which means when I am writing), Writing Automaton's arm will put on writing surface. vice versa, when I lift
+        the pen, Automaton's arm also lifts.</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4212_02.jpg" class="detail-media"
+        alt="Mechanical Test">
+
+      <p>I desoldered the optical sensor very carefully. Luckly, I found snesor(PAW3512DK)'s scheme and data sheet on
+        Internet.</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4223_02.jpg" class="detail-media"
+        alt="Sensor Desoldering">
+
+      <p>Simulating a cursor. I am lucky again, it works!</p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4225_02.jpg" class="detail-media"
+        alt="Cursor Test">
+
+      <h3>Coding</h3>
+      <p>I developmented the system with Processing and Arduino IDE. Most of the computing is done in Processing. I
+        setup serial communication between Processing and the board. The only thing my board need to do is assign angles
+        value to each motor.</p>
+
+      <p><strong>1. Angle value in Processing:</strong></p>
+
+      <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/004_Trigonometric.jpg"
+        class="detail-media" alt="Trigonometric">
+
+      <div class="pre">int rootX;
+        int rootY;
+        int ex, ey, hx, hy;
+        int armLength;
+
+        import processing.serial.*;
+        Serial myPort;
+        String value;
+
+        float upperDegree;
+        float lowerDegree;
+
+        int upperDegreeInt;
+        int lowerDegreeInt;
+
+        int servoLowerAngle;
+        int servoUpperAngle;
+
+        void setup() {
+        size(1000, 1000);
+        background(#ff9900);
+        String portName = Serial.list()[4]; //change the 0 to a 1 or 2 etc. to match your port
+        myPort = new Serial(this, portName, 115200);
+        rootX = width/2;
+        rootY = 800;
+        armLength = 400;
+        }
+
+        void draw() {
+        fill(255);
+        rect(0, 0, width, height);
+        upperArm();
+        }
+
+        void upperArm() {
+        print("x: "+mouseX+" / ");
+        println("y: "+mouseY);
+
+        int dx = mouseX - rootX;
+        int dy = mouseY - rootY;
+
+        float distance = sqrt(dx*dx+dy*dy);
+
+        int a = armLength;
+        int b = armLength;
+        float c = min(distance, a + b);
+
+        float B = acos((b*b-a*a-c*c)/(-2*a*c));
+        float C = acos((c*c-a*a-b*b)/(-2*a*b));
+
+        float D = atan2(dy, dx);
+        float E = D + B + PI + C;
+
+        ex = int((cos(E) * a)) + rootX;
+        ey = int((sin(E) * a)) + rootY;
+        print("UpperArm Angle= "+degrees(E)+" ");
+        upperDegree = degrees(E);
+
+        hx = int((cos(D+B) * b)) + ex;
+        hy = int((sin(D+B) * b)) + ey;
+        println("LowerArm Angle= "+degrees((D+B)));
+        lowerDegree = degrees((C));
+
+        upperDegreeInt = int(upperDegree);
+        lowerDegreeInt = int(lowerDegree);
+        println("convert degree to int: "+upperDegreeInt+" / "+ lowerDegreeInt);
+        drawIK();
+        // mapping angle value to servo motor angle
+        servoUpperAngle = int(map(upperDegreeInt, 180, 360, 0, 180));
+        servoLowerAngle = abs(lowerDegreeInt);
+        //println("upper: "+servoUpperAngle);
+        sendDegree();
+        }
+
+        void drawIK(){
+        stroke(255, 0, 0);
+        fill(240, 0, 0);
+        ellipse(rootX, rootY, 20, 20); // root
+        ellipse(ex, ey, 10, 10); // end point of upper arm
+        ellipse(hx, hy, 6, 6); // end point of lower arm
+        stroke(0);
+        strokeWeight(3);
+        line(rootX, rootY, ex, ey);
+        line(ex, ey, hx, hy);
+        stroke(0);
+        }
+
+        void sendDegree() {
+        String upperAngle;
+        String lowerAngle;
+
+        if (servoUpperAngle<100) { upperAngle="0" +str(servoUpperAngle); } else { upperAngle=str(servoUpperAngle); } if
+          (servoLowerAngle<100) { lowerAngle="0" +str(servoLowerAngle); } else { lowerAngle=str(servoLowerAngle); }
+          value=upperAngle+","+lowerAngle+"\n"; println(value); myPort.write(value); }</div>
+
+          <p><strong>2. Programming on my board:</strong></p>
+
+          <div class="pre">int buf = 0;
+            int upperArmDegree = 0;
+            int lowerArmDegree = 0;
+
+            #include &lt;SoftwareServo.h&gt;
+            SoftwareServo upperServo; // Joint at base
+            SoftwareServo lowerServo; // Elbow between a and b
+
+            #include &lt;SoftwareSerial.h&gt;
+            SoftwareSerial mySerial(6, 5); // RX, TX
+
+            void setup(){
+            upperServo.attach(7);
+            lowerServo.attach(8);
+            mySerial.begin(115200);
+            }
+
+            void loop(){
+            if (mySerial.available() > 0) {
+            readCoordinates();
+            delay(2);
+            if(mySerial.available() == 0){
+            mySerial.print(upperArmDegree);
+            mySerial.print(",");
+            mySerial.println(lowerArmDegree);
+            }
+            moveArm();
+            }
+            }
+
+            void readCoordinates(){
+            byte inByte = mySerial.read();
+            if(inByte != 10 && inByte != ','){ //newline(10) and , are special
+            buf = buf*10;
+            buf += (int)(inByte - '0');
+            } else if(inByte == ','){
+            upperArmDegree = buf;
+            buf = 0;
+            } else {
+            lowerArmDegree = buf;
+            buf = 0;
+            }
+            }
+
+            void moveArm(){
+            upperServo.write(upperArmDegree);
+            lowerServo.write(lowerArmDegree);
+            }</div>
+
+          <h3>Board design</h3>
+          <p>Board design is a part of look and feel in my project. I put the board on the back of Writing Automaton. I
+            created 2 boards, each of them suppose to control one arm.</p>
+
+          <p>- <a href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/finalProject_A_04.sch"
+              target="_blank">PCB(A).sch</a> / <a
+              href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/finalProject_A_04.brd"
+              target="_blank">PCB(A).brd</a></p>
+
+          <p>- <a href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/finalProject_B_01.sch"
+              target="_blank">PCB(B).sch</a> / <a
+              href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/finalProject_B_01.brd"
+              target="_blank">PCB(B).brd</a></p>
+
+          <p><img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/PCB_A.png"
+              style="width: 48%; display: inline-block;" alt="PCB A"><img
+              src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/PCB-B.png"
+              style="width: 48%; display: inline-block;" alt="PCB B"></p>
+
+          <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4262_02.jpg" class="detail-media"
+            alt="PCB Assembly">
+
+          <p>The back of Writing Automaton:</p>
+
+          <img src="https://fabacademy.org/2015/as/students/huang.yi-pin/18_images/IMG_4310_02.jpg" class="detail-media"
+            alt="Back View">
+
+          <h3>Materials</h3>
+          <p>1. M2 screw<br>
+            2. MDF<br>
+            3. Acrylic<br>
+            4. Attiny44 x 2, capacitors, and reisistors.<br>
+            5. 9g servo motor x 3 (at least)</p>
+
+          <h3>Source files</h3>
+          <p>- <a href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/3d_models/AutoSave_robotBody.skp"
+              target="_blank">Automaton Body 2D</a><br>
+            - <a href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/3d_models/robotBody.skp"
+              target="_blank">Automaton Body 3D</a><br>
+            - <a href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/3d_models/shoulder.skp"
+              target="_blank">Shoulder</a><br>
+            - <a href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/3d_models/hand.skp"
+              target="_blank">Hand</a><br>
+            - <a href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/3d_models/sensorHolder.skp"
+              target="_blank">Optical Sensor holder</a><br>
+            - <a href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/finalProject_A_04.sch"
+              target="_blank">PCB(A).sch</a> / <a
+              href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/finalProject_A_04.brd"
+              target="_blank">PCB(A).brd</a><br>
+            - <a href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/finalProject_B_01.sch"
+              target="_blank">PCB(B).sch</a> / <a
+              href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/board/finalProject_B_01.brd"
+              target="_blank">PCB(B).brd</a><br>
+            - <a
+              href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/week_18_finalProject/week_18_finalProject.ino"
+              target="_blank">Arm control</a> / <a
+              href="https://fabacademy.org/2015/as/students/huang.yi-pin/18_files/week_18_finalProject_processingSketch/week_18_finalProject_processingSketch.pde"
+              target="_blank">GUI by Processing</a></p>
+
+          <h3>Demonstration</h3>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 16px 0;">
+            <iframe
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+              src="https://www.youtube.com/embed/kR-KHLh8xPA"
+              title="Writing Automaton Demonstration"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+      </div>
+    </div>
+</body>
+
+</html>
