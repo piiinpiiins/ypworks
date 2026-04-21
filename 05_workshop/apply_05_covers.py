@@ -15,7 +15,7 @@ def main():
         '/Users/huang/.gemini/antigravity/brain/22b0ea46-f92b-4027-9cba-61555ab559af/exhibition_cover_10_wide_1772549342947.png'
     ]
 
-    base_dir = '/Users/huang/Documents/008_vibeCoding/myCases/05_curation/'
+    base_dir = '/Users/huang/Documents/008_vibeCoding/myCases/05_workshop/'
     
     processed_imgs = []
     for fp in img_files:
