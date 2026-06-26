@@ -46,6 +46,13 @@
 - 手機**隱藏 Static/Motion 切換鈕**（JS 不建立 + CSS `display:none` 雙保險）
 - 手機進場動畫加大：卡片位移 34→56px、圖片 zoom 1.14→1.2、時間拉長到 1s，更有感
 
+### 7. CV 修正與重轉（與網站無關，同資料夾）
+- [黃宜品_CV.md](黃宜品_CV.md) 英文段落：`Ph.D. candidate` → `Ph.D. student`（本人是博士生，非博士候選人）
+  - 日文「博士課程に在籍」、中文「博士班進修中」本來就正確，未動（誤植只在英文版）
+- 用 SKILL `markdown-2-docx-n-pdf`（PingFang TC 中文／Helvetica Neue 英文）從修正後的 .md 重轉 PDF，覆蓋 `Yipin Huang- 黃宜品_CV.pdf`（220KB）
+- **docx 整份刪除**；正本是 .md，PDF 由它轉出
+- 驗證：轉檔中間 docx 內 `candidate` 0 次、`student` 1 次
+
 ---
 
 ## 架構備忘
