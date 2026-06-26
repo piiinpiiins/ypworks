@@ -1,6 +1,7 @@
-title: Mycelium Birdhouse Workshop 真菌巢箱工作坊
-subtitle: 2025 Oct - Nov
-subtitle: VISION BASE at Shih Chien University
+# Title:Mycelium Birdhouse Workshop 真菌巢箱工作坊
+## Subtitle:
+# date: 2025 Oct - Nov
+# place: VISION BASE at Shih Chien University
 
 5 weeks workshop on designing and making mycelium birdhouse sample.
 
