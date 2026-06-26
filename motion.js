@@ -33,6 +33,7 @@
 
   // Elements that participate in the entrance choreography.
   var SELECTOR = [
+    ".site-banner",
     ".site-header",
     "h2",
     "hr",

@@ -161,6 +161,30 @@ p {
   background: var(--fg);
 }
 
+/* Header cover banner */
+.site-banner {
+  margin: 0 0 22px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.site-banner img {
+  display: block;
+  width: 100%;
+  height: clamp(150px, 30vw, 280px);
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-banner { border-color: rgba(255, 255, 255, 0.12); }
+}
+
+@media (max-width: 520px) {
+  .site-banner img { height: clamp(130px, 42vw, 200px); }
+}
+
 /* Section nav */
 .section-nav {
   display: flex;
@@ -380,6 +404,29 @@ p {
   transition-delay: calc(var(--i, 0) * 55ms);
 }
 
+/* header cover banner: mask wipe + settle from a zoom */
+.motion .site-banner {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transition:
+    opacity 1s var(--ease-out),
+    clip-path 1.1s var(--ease-out);
+}
+
+.motion .site-banner img {
+  transform: scale(1.08);
+  transition: transform 1.3s var(--ease-out);
+}
+
+.motion .site-banner.in-view {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+.motion .site-banner.in-view img {
+  transform: scale(1);
+}
+
 /* detail page hero image: reveal via a vertical mask wipe + zoom */
 .motion .detail-media {
   opacity: 0;
@@ -581,6 +628,8 @@ p {
 /* Accessibility: honour reduced-motion even if motion view is chosen —
    show everything, drop the movement. */
 @media (prefers-reduced-motion: reduce) {
+  .motion .site-banner,
+  .motion .site-banner img,
   .motion .site-header,
   .motion h2,
   .motion .cat-label,
