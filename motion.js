@@ -27,8 +27,10 @@
     try { localStorage.setItem(KEY, v); } catch (e) {}
   }
 
-  // default = motion; only stays static if the visitor explicitly chose it
-  var mode = read() === "static" ? "static" : "motion";
+  // On phones we always run motion (no toggle is shown). On larger screens
+  // motion is the default but a saved "static" choice is respected.
+  var isMobile = !!(window.matchMedia && window.matchMedia("(max-width: 520px)").matches);
+  var mode = isMobile ? "motion" : (read() === "static" ? "static" : "motion");
   if (mode === "motion") root.classList.add("motion");
 
   // Elements that participate in the entrance choreography.
@@ -187,7 +189,7 @@
   }
 
   function init() {
-    buildButton();
+    if (!isMobile) buildButton();   // no Static/Motion toggle on phones
     buildAllButton();
     if (mode === "motion") enterMotion();
   }

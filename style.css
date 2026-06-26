@@ -608,20 +608,10 @@ p {
   }
 }
 
-/* Bigger, easier-to-tap toggle on small screens */
+/* On phones motion is always on, so the Static/Motion toggle is hidden */
 @media (max-width: 520px) {
   .view-toggle {
-    right: max(14px, env(safe-area-inset-right));
-    bottom: max(14px, env(safe-area-inset-bottom));
-    gap: 9px;
-    padding: 13px 18px;
-    font-size: 12px;
-    opacity: 0.95;
-  }
-
-  .view-toggle .vt-dot {
-    width: 9px;
-    height: 9px;
+    display: none;
   }
 }
 
@@ -646,4 +636,38 @@ p {
     transition: none !important;
   }
   .view-toggle.is-motion .vt-dot { animation: none; }
+}
+
+/* Stronger, more noticeable entrance on phones (motion is always on there) */
+@media (max-width: 520px) and (prefers-reduced-motion: no-preference) {
+  :root { --reveal-dur: 1s; }
+
+  .motion .card {
+    transform: translateY(56px) scale(0.96);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+  .motion .card.in-view {
+    transform: none;
+  }
+  .motion .card .card-media {
+    transform: scale(1.2);
+    transition-duration: 1.4s;
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .motion h2,
+  .motion #desc,
+  .motion .cat-label {
+    transform: translateY(40px);
+  }
+
+  .motion .cat-index li {
+    transform: translateY(28px);
+    transition-delay: calc(var(--i, 0) * 75ms);
+  }
+
+  .motion .detail-media,
+  .motion .site-banner img {
+    transform: scale(1.12);
+  }
 }
