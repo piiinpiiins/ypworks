@@ -53,6 +53,14 @@
 - **docx 整份刪除**；正本是 .md，PDF 由它轉出
 - 驗證：轉檔中間 docx 內 `candidate` 0 次、`student` 1 次
 
+### 8. 移除 media/ 並改寫 git 歷史
+- `media/` 整個資料夾沒有任何頁面引用 → 刪除（`git rm -r media/`）
+- 其中 `IMG_0097.MOV` 達 71MB，已 commit 進歷史 → 用 **git-filter-repo** 把 media/ 從**所有歷史**清除
+  - 流程：先提交未存變更清空工作區 → 建立完整備份 bundle（474MB，存 scratchpad）→ `git filter-repo --path media --invert-paths --force` → 重設 origin remote（filter-repo 會自動移除）→ `git push --force`
+  - 結果：`.git` 477MB → 402MB；遠端 force-push 完成；Pages 重建 `built`
+- ⚠️ **歷史已改寫，所有 commit hash 變更**。其他機器的 clone 不能直接 pull，需重新 clone 或 reset。
+- ⚠️ **尚未處理的大檔**（有在用、未動）：`01_bio_design/01_003-bioKit/images/intro.mp4`（**83MB**，超過 GitHub 50MB 建議上限、會跳警告）、`05_workshop/.../cover.png`（16MB）。要讓 repo 真正瘦身需另外壓縮影片 / 改用 Git LFS / 影片外部化。
+
 ---
 
 ## 架構備忘
