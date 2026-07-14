@@ -32,6 +32,7 @@ myCases/
 ├── research.html             ← 分類頁：研究
 ├── curation.html             ← 分類頁：工作坊（注意檔名是 curation 不是 workshop）
 ├── teaching.html             ← 分類頁：教學（已從選單隱藏，但頁面還在）
+├── about.html                ← 關於我（純文字頁，沒有 card-grid，不進 all.html 的彙整內容）
 ├── all.html                  ← 產生的彙整頁
 ├── style.css / motion.js / header-cover.jpg / Yipin photo.png
 │
@@ -72,18 +73,19 @@ myCases/
 
 ## 選單（section-nav）
 
-目前順序（每個根分類頁、`09_Product/index.html`、`all.html` 都有同一份）：
+目前順序（每個根分類頁、`09_Product/index.html`、`about.html`、`all.html` 都有同一份）：
 
 ```
-生物設計 | 合成器 | 互動設計 | 研究 | 工作坊 | 商品 Product | 全部作品 All works
+生物設計 | 合成器 | 互動設計 | 研究 | 工作坊 | 商品 Product | 關於我 ABOUT ME | 全部作品 All works
 ```
 
 - 選單只顯示名稱、不帶編號。
 - `class="active"` 標在「當前頁」那一項。
-- 從根頁連 Product 用 `09_Product/index.html`；從 Product 頁連別人用 `../xxx.html`。
+- 從根頁連 Product／About Me 用 `09_Product/index.html`／`about.html`；從 Product 頁連別人（含 About Me）都要加 `../` 前綴。
 - **教學 Teaching 不在選單**（頁面仍在，只是拿掉入口）。
+- **關於我 About Me**（`about.html`）沒有 card-grid，只是一段自我介紹純文字頁（目前內文待補），所以**不在** `all.html` 產生器的 `pages` 清單裡（那份清單只收有 card-grid 的分類頁）——改 `about.html` 內文不用重建 all.html；但如果動到選單本身（順序、新增分類），還是要重建，因為 all.html 的 nav 是直接從 `index.html` 的 `<header>` 整段複製過去的。
 
-底部另有「全部分類 All Categories」清單（01–05），這是獨立於選單的第二層導覽。目前**不含**商品 Product（只加在上方選單）。
+底部另有「全部分類 All Categories」清單（01–05），這是獨立於選單的第二層導覽。目前**不含**商品 Product、關於我（只加在上方選單）。
 
 ---
 
