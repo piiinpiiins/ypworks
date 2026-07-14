@@ -4,6 +4,8 @@ Yipin 的作品集網站（repo：`piiinpiiins/ypworks`）。這份文件講**�
 
 線上：https://piiinpiiins.github.io/ypworks/
 
+> 這份文件本身現在放在 `_temp/`（2026-07-14 整理根目錄時搬過來的），跟 `DEV.md`、`RWD.md`、`motion_note.md` 放一起。內容講的路徑都是**相對 `myCases/` 專案根目錄**，不是相對這份文件自己的位置。
+
 ---
 
 ## 這是什麼
@@ -42,10 +44,19 @@ myCases/
 │   └── ...
 ├── 02_synthersizer/  03_interaction design/  04_research/
 ├── 05_workshop/  06_teaching/  07_base/
-└── 09_Product/               ← 商品（分類頁在資料夾內，見下方「注意」）
-    ├── index.html
-    └── 09_001/index.html
+├── 09_Product/               ← 商品（分類頁在資料夾內，見下方「注意」）
+│   ├── index.html
+│   └── 09_001/index.html
+│
+└── _temp/                    ← 不是網站本身的檔案，2026-07-14 從根目錄整理過來的
+    ├── DEV.md / myCaseDev.md / RWD.md / motion_note.md   ← 開發文件
+    ├── _pgbackup/ / _pginfo/                              ← 舊版 Pinegrow 視覺化編輯工具的自動備份，現在手寫不用了
+    ├── 黃宜品_CV.md / 黃宜品履歷（完整）...md / cv-backup.md / *CV*.pdf
+    ├── yipin sketches/                                    ← 個人手稿掃描
+    └── 其他沒被任何頁面連結到的散落照片、舊版孤兒頁（如 黃宜品_類比合成器作品集.html）
 ```
+
+`_temp/` 裡的東西**不會被任何網站頁面引用**（動之前用 `grep -rl "檔名" --include="*.html" --include="*.css" --include="*.js" .` 確認過一輪），純粹是堆放暫時不算「網站」但還不想刪的檔案。新增檔案時，不確定算不算網站內容，先問使用者，別自己塞進 `_temp/`；反過來，看到根目錄又开始堆積不相干的檔案，也可以主動問要不要收進 `_temp/`。
 
 ### ⚠️ 兩種分類頁位置（歷史遺留的不一致）
 
