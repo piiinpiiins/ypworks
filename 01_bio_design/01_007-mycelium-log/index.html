@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>真菌研究日誌 Mycelium Research Log</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/png" href="../../Yipin photo.png">
+    <script src="../../motion.js"></script>
+    <style>
+        /* Scoped to this page only — a self-contained log layout: */
+        /* wider canvas, hero banner, left date rail + right notes pane. */
+        body { max-width: 980px; }
+
+        .log-intro { margin-top: 14px; }
+
+        /* .detail-media defaults to display:inline in the shared stylesheet, which
+           only causes visible overflow in this page's flex layout — fixed locally. */
+        .log-entry .detail-media { display: block; }
+
+        /* log.js injects entries after motion.js's initial IntersectionObserver
+           scan, so the injected h2 / .detail-media would never get the scroll
+           reveal (.in-view) — show them immediately instead. */
+        .log-notes h2,
+        .log-notes .detail-media { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+
+        .log-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 32px;
+            margin-top: 22px;
+        }
+
+        .log-dates {
+            flex: 0 0 150px;
+            position: sticky;
+            top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .log-dates-label { margin-bottom: 2px; }
+
+        .log-date-link {
+            display: block;
+            padding: 6px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            color: var(--muted);
+            background-image: none;
+            border-left: 2px solid transparent;
+            transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .log-date-link:hover {
+            color: var(--fg);
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .log-date-link.is-active {
+            color: var(--fg);
+            font-weight: 600;
+            border-left-color: var(--fg);
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .log-date-link[hidden] { display: none; }
+
+        .log-notes { flex: 1; min-width: 0; }
+
+        .log-entry[hidden] { display: none; }
+
+        .log-loading { color: var(--muted2); font-size: 12px; }
+
+        .log-filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--muted);
+            margin: -4px 0 4px;
+        }
+
+        .log-filter-bar[hidden] { display: none; }
+
+        .log-filter-clear {
+            font: inherit;
+            font-size: 11px;
+            color: var(--muted);
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 2px 9px;
+            cursor: pointer;
+        }
+
+        .log-filter-clear:hover { color: var(--fg); }
+
+        .log-tags { margin-top: 4px; }
+
+        .log-tag {
+            display: inline-block;
+            font: inherit;
+            font-size: 11px;
+            color: var(--muted);
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 3px 9px;
+            margin: 0 6px 6px 0;
+            cursor: pointer;
+            transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .log-tag:hover { color: var(--fg); border-color: var(--fg); }
+
+        .log-tag.is-active {
+            color: var(--bg);
+            background: var(--fg);
+            border-color: var(--fg);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .log-date-link:hover,
+            .log-date-link.is-active { background: rgba(255, 255, 255, 0.08); }
+        }
+
+        @media (max-width: 640px) {
+            .log-layout { flex-direction: column; align-items: stretch; }
+            .log-dates {
+                flex: 0 0 auto;
+                position: static;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 6px;
+                width: 100%;
+            }
+            .log-date-link {
+                border-left: none;
+                border-bottom: 2px solid transparent;
+            }
+            .log-date-link.is-active {
+                border-bottom-color: var(--fg);
+                border-left-color: transparent;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../../index.html" class="back-link">← 生物設計 Bio Design</a> <a href="../../all.html" class="back-link" style="margin-left:14px;">全部作品 All works →</a>
+
+    <div class="site-banner">
+        <img src="images/cover.png" alt="真菌研究日誌">
+    </div>
+
+    <h1>真菌研究日誌 Mycelium Research Log</h1>
+    <p class="cat-label">持續更新 · Ongoing</p>
+    <p class="log-intro">紀錄真菌複合材料的養菌、製程與觀察，時間軸由新到舊排列：</p>
+    <hr>
+
+    <p class="log-filter-bar" hidden>目前篩選：<strong class="log-filter-tag"></strong> <button type="button" class="log-filter-clear">清除篩選 ✕</button></p>
+
+    <div class="log-layout">
+        <nav class="log-dates" aria-label="日誌日期">
+            <p class="cat-label log-dates-label">日期 Dates</p>
+        </nav>
+
+        <!--
+          data-entries：新到舊排列的日期資料夾清單（逗號分隔，YYYYMMDD，不帶槓線）。
+          新增一則日誌只要：1) 建資料夾 2) 寫 content.md 3) 把資料夾名加進這裡。
+          log.js 會自動抓每個資料夾的 content.md 轉成畫面上的一則。
+        -->
+        <div class="log-notes" data-entries="20260713,20260709,20260704">
+            <p class="log-loading">載入日誌中…</p>
+        </div>
+    </div>
+
+    <script src="log.js"></script>
+</body>
+
+</html>
