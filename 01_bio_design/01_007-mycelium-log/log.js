@@ -6,6 +6,7 @@
  * Supported content.md shapes (first "# ..." line is skipped, the rest is
  * split into blank-line-separated blocks):
  *   ![alt](file.jpg)              -> <img class="detail-media">
+ *   [text](youtube url)           -> responsive embedded player (youtu.be or youtube.com/watch)
  *   [text](url)                   -> <p><a>...</a></p>
  *   - label：value                -> <p><strong>label：</strong>value</p>
  *   - self-founded                -> <p>self-founded</p>
@@ -23,6 +24,11 @@
 
   function folderToId(folder) {
     return folder.slice(0, 4) + "-" + folder.slice(4, 6) + "-" + folder.slice(6, 8);
+  }
+
+  function youtubeVideoId(url) {
+    var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([A-Za-z0-9_-]{6,})/);
+    return m ? m[1] : null;
   }
 
   function parseEntry(md, folder) {
@@ -43,7 +49,13 @@
         return;
       }
       if (linkMatch) {
-        bodyHtml += '<p><a href="' + escapeHtml(linkMatch[2]) + '" target="_blank">' + escapeHtml(linkMatch[1]) + "</a></p>";
+        var videoId = youtubeVideoId(linkMatch[2]);
+        if (videoId) {
+          bodyHtml += '<div class="video-embed"><iframe src="https://www.youtube.com/embed/' + videoId + '" title="'
+            + escapeHtml(linkMatch[1]) + '" loading="lazy" allowfullscreen></iframe></div>';
+        } else {
+          bodyHtml += '<p><a href="' + escapeHtml(linkMatch[2]) + '" target="_blank">' + escapeHtml(linkMatch[1]) + "</a></p>";
+        }
         return;
       }
 

@@ -19,6 +19,24 @@
            only causes visible overflow in this page's flex layout — fixed locally. */
         .log-entry .detail-media { display: block; }
 
+        .video-embed {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            margin: 16px 0;
+            border-radius: 4px;
+            overflow: hidden;
+            background: rgba(128, 128, 128, 0.08);
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         /* log.js injects entries after motion.js's initial IntersectionObserver
            scan, so the injected h2 / .detail-media would never get the scroll
            reveal (.in-view) — show them immediately instead. */
