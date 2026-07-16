@@ -4,22 +4,22 @@
 
 中文
 
-I am sorry，今天環境比較暗，因為陽台的燈壞掉了。這是昨天用 baby massage oil 處理過的那個樣本。顯然還是拿不出來，後來我還敲擊它。
+不好意思，今天環境比較暗，因為陽台的燈壞掉了。這是昨天用 baby massage oil 處理過的那個樣本。顯然還是拿不出來，後來我還敲擊它。
 
-- 配方／製程：de-molding mycelium composite used baby massage oil.
+- 配方／製程：使用 baby massage oil 協助真菌複合材料脫模。
 - 問題與觀察：沒想法。大受打擊。
 - 下一步：可能把它切開吧。還有做新的模具
-- 贊助：self-founded
+- 資金：self-funded
 - tags: Baby massage oil Track
 
 English
 
 I am sorry, the lighting is quite dim today because the balcony light is broken. This is the sample treated with baby massage oil yesterday. It clearly still would not come out, and later I even tried tapping it.
 
-- Recipe／process：de-molding mycelium composite used baby massage oil.
+- Recipe／process：Used baby massage oil to help de-mold the mycelium composite.
 - Problems／observations：No idea. Quite discouraged.
 - Next step：Maybe cut it open. Also make a new mold.
-- Funding：self-founded
+- Funding：self-funded
 - tags: Baby massage oil Track
 
 日本語
