@@ -1,2 +1,8 @@
 # 不是網站本身的檔案（開發文件、CV、舊工具備份等，見 _temp/myCaseDev.md）
 _temp/
+
+# 改版規劃文件（不上線）
+DIP_2026/
+
+# macOS 資料夾中繼檔
+.DS_Store
